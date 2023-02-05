@@ -31,7 +31,7 @@ public class Chicken_Shooting extends JFrame {
         Mythread mythread = new Mythread(chiCho);
         mythread.start();
 
-        //일단 엔터 이벤트 발생은 JFrame 에서 해야함
+
         c.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent event) {
                 if (event.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -56,7 +56,7 @@ public class Chicken_Shooting extends JFrame {
     }
 }
 
-//치킨 스레드 생성 -> 일단 치킨을 움직이게 해보자 -> 치킨의 실시간 위치를 빼내 올 수 있을까? -> 객체 하나에 치킨 총알 다 넣음
+//치킨 스레드 생성
 class Mythread extends Thread {
     private ChiCho chiCho;
     public Mythread(ChiCho chiCho) {
@@ -78,8 +78,7 @@ class Mythread extends Thread {
     }
 }
 
-//총알 스레드 따로 생성 -> 엔터쳐서 이벤트 발생한 후 치킨 못 맞췄을 때 어떻게 다시 엔터쳐서 스레드 실행 할 수 있게 하나? -> 움직이는 걸 함수로 해야할듯
-//총알이 치킨 맞췄을때 멈춤
+// 총알 스레드 생성
 class Shooting extends Thread {
     private ChiCho chiCho;
     public Shooting(ChiCho chiCho) {
@@ -151,7 +150,7 @@ class ChiCho extends JLabel {
         this.chi = chi;
         this.cho = cho;
     }
-    //@@@@명중 시킬때 어떻게 치킨과 총알을 멈춰야하나?@@@@
+
     public synchronized void chimove() {
         //치킨이 총알에 맞으면 다시 시작
         if (cho.getY()<=30 && chi.getX() >= cho.getX()-20 && chi.getX()<= cho.getX()+20) {
